@@ -29,9 +29,7 @@ The following are the parameters present in cloudformation template
     CidrIp: CIDR for allowing inbound connections to ICAP server (Ports: 22,1344,1355,443,7000)
 ```
 
-## Create stack of ICAP Servers
-
-## Create stack of Loadbalancers
+## Create stack of  Loadbalancers & Instances
 ### Method 1:  AWS CLI
 
 - Clone the repo 
@@ -82,6 +80,17 @@ in us-east-2 creating 2 servers mapped to elastic ip YOUR_ALLOCATION_ID
     "StackId": "arn:aws:cloudformation:us-east-2:..."
 }
 ```
+## Delete stack
+
+- To remove the created stack with the followed number of instances and load balancer created run:
+```
+./delete-stack.sh <STACK_NAME> <REGION>
+```
+- Example Command
+```
+./delete-stack.sh icapLoadTest eu-west-3
+```
+
 
 ### Method 2: Launching with Click of Button
 | Region           | Stack                                                                                                                                                                                                                                                                                                                                      |
@@ -106,14 +115,3 @@ in us-east-2 creating 2 servers mapped to elastic ip YOUR_ALLOCATION_ID
 ![parameters](https://user-images.githubusercontent.com/60857664/107666135-d9ce4400-6c96-11eb-8c05-c54b6aa3d788.png)
 
 - For the next page, leave everything at default, review and create stack
-
-## Uninstall
-
-- To remove the created stack with the followed number of instances and load balancer created run:
-```
-./delete-stack.sh <STACK_NAME> <REGION>
-```
-- Example Command
-```
-./delete-stack.sh icapLoadTest eu-west-3
-```
