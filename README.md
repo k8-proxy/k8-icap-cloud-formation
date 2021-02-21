@@ -63,14 +63,12 @@ aws configure
         ```
 - By executing below command, speicified number of instances will be created along with a load balancer which will balance traffic to these instances. 
 ```
-./create-stack.sh STACK_NAME AMI_ID ELASTIC_IP_Allocation REGION INSTANCE_COUNT KEY_NAME INSTANCE_SIZE CIDR
+./create-stack.sh <STACK_NAME> <AMI_ID> <ELASTIC_IP_Allocation> <REGION> <INSTANCE_COUNT> <KEY_NAME> <INSTANCE_SIZE> <CIDR>
 ``` 
 - Example Command
 ```
 ./create-stack.sh icapLoadTest ami-09c44a4de6a377b3d eipalloc-0877b45a3322586f2 eu-west-3 2 cf-icap_eu-west-3 t2.xlarge 0.0.0.0/0
 ``` 
-
-
 
 
 Example Output:
@@ -108,3 +106,14 @@ in us-east-2 creating 2 servers mapped to elastic ip YOUR_ALLOCATION_ID
 ![parameters](https://user-images.githubusercontent.com/60857664/107666135-d9ce4400-6c96-11eb-8c05-c54b6aa3d788.png)
 
 - For the next page, leave everything at default, review and create stack
+
+## Uninstall
+
+- To remove the created stack with the followed number of instances and load balancer created run:
+```
+./delete-stack.sh <STACK_NAME> <REGION>
+```
+- Example Command
+```
+./delete-stack.sh icapLoadTest eu-west-3
+```
