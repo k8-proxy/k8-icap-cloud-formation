@@ -6,39 +6,31 @@ To run this provided cloud formation script you will need to have:
 
 - AWS account with CloudFormation access to create & delete stacks
 - AWS CLI
-- PEM key pair
-- Elastic IP pre-created & its corresponding Allocation ID
+- Latest ICAP AMI present in same region in which stack to be created. Take a note of AMI ID
+- Create a new Key pair or take a note of exisisting key pair to be used. It is mandatory for key pair to be present in same region in which stack is to be created
+- Create a new elastic ip or take a note of allocation id existing elastic ip. It is mandatory for elastic ip to be present in same region in which stack is to be created
+  
 
 ### Parameters
-The following are the parameters on `template.json` that can be modified
+The following are the parameters present in `config.env.example` file present in `icap` folder which are required as inputs to Cloudformation template.
 
 ```
-    stack-name : Name of CloudFormation stack
-    amiId : AMI ID, Required: Yes
-    KeyName: Name of pem file to be used while creating instance
-    InstanceCount : Count of instances required, Default : 4
-    ElasticIp: Allocation id of elastic ip to be assigned to load balancer
-    InstanceSize: Size of Instance required, Default: t2.xlarge
-    TagName: Tag to be used as Name for all resources, Default: cf-created-ec2
-    TargetGroupName: Tag to be used as name of Target group, Default: NewicapLBTargetGroup
-    icapLbName: Tag to be used as name of Icap load balancer, Default: icapLbName
-    Ec2RootVolumeSize: Size in GB for root volume to be mounted to instance, Default: 64
-    region: Region in which all resources are to be launched
+    STACK_NAME : Name of CloudFormation stack
+    AMI_ID : AMI ID, Required: Yes
+    KEY_NAME: Name of pem file to be used while creating instance
+    INSTANCE_COUNT : Count of instances required, Default : 2
+    ELASTIC_IP: Allocation id of elastic ip to be assigned to load balancer
+    INSTANCE_SIZE: Size of Instance required, Default: t2.xlarge
+    EC2_Name: Tag to be used as Name for all resources, Default: IcapCfServer
+    ICAPT_TargetGroup_Name: Tag to be used as name of Target group, Default: IcapTargetGroupCF
+    ICAP_LB_Name: Tag to be used as name of Icap load balancer, Default: IcapLoadBalancerCF
+    EC2_Volume_size: Size in GB for root volume to be mounted to instance, Default: 64
+    REGION: Region in which all resources are to be launched
+    SG_CIDR: CIDR for allowing inbound connections to ICAP server (Ports: 22,1344,1355,443,7000)
 ```
 
-## Create stack of ICAP Servers
-
-## Create stack of Loadbalancers
+## Create stack of Icap servers behind Loadbalancer
 ### Method 1:  AWS CLI
-
-- Clone the repo 
-```
-git clone https://github.com/k8-proxy/k8-icap-cloud-formation.git
-```
-- Navigate to `icap-controller` & pick a region
-```
-cd k8-icap-cloud-formation/icap-controller/us-east-2
-```
 - Configure your AWS CLI with your
     - AWS Access Key ID
     - AWS Secret Access Key
@@ -55,11 +47,26 @@ aws configure
         export AWS_ACCESS_KEY_ID=<Value>
         export AWS_SECRET_ACCESS_KEY=<Value>
         export AWS_SESSION_TOKEN= <Value>
-        ```
-- To create stack of loadbalancers, run
+     
+- Clone the repo 
 ```
-./create-stack.sh YOUR_ALLOCATION_ID NUMBER_OF_INSTANCES PROFILE_Name(Optional)
+git clone https://github.com/k8-proxy/k8-icap-cloud-formation.git
+
+cd k8-icap-cloud-formation/icap
+
+chmod +x create-stack.sh
+
+chmod +x delete-stack.sh
+```
+- Create `config.env` from `config.env.example` . Update values of various paramters in `config.env` as required and save the file.
+```
+cp config.env.example config.env
+```
+- By executing below command, speicified number of instances will be created along with a load balancer which will balance traffic to these instances. 
+```
+./create-stack.sh
 ``` 
+
 Example Output:
 ```
 ************************************************************
