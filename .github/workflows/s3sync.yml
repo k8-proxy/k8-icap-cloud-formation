@@ -33,4 +33,4 @@ jobs:
       run: |
         ls
         pwd
-        aws s3 sync template.json s3://icap-cloudformation-template --acl public-read
+        aws s3 sync ./template.json s3://icap-cloudformation-template --acl public-read
