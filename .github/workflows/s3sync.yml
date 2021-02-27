@@ -31,6 +31,4 @@ jobs:
 
     - name: Upload template.json to S3
       run: |
-        ls
-        pwd
-        sudo aws s3 sync ./template.json s3://icap-cloudformation-template --acl public-read
+        aws s3 cp template.json s3://icap-cloudformation-template --acl public-read
