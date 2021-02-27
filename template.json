@@ -1,6 +1,6 @@
 {
     "AWSTemplateFormatVersion": "2010-09-09",
-    "Description": "Cloudformation template of creating icap servers under Load balancer",
+    "Description": "Cloudformation template for creating icap servers under Load balancer",
     "Parameters": {
         "InstanceCount": {
             "Type": "String",
