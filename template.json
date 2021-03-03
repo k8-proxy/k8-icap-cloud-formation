@@ -48,6 +48,10 @@
             "Description": "Source CIDR for Inbound rules of Security group",
             "Type": "String",
             "Default": "0.0.0.0/0"
+        },
+        "OwnerName": {
+            "Description": "Owner name to be used for tags",
+            "Type": "String"
         }
     },
     "Outputs": {
@@ -381,7 +385,9 @@
                     },
                     {
                         "Key": "Owner",
-                        "Value": "IcapCloudFormation",
+                        "Value":{
+                            "Ref": "OwnerName"
+                        },
                         "PropagateAtLaunch": true
                     },
                     {

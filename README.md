@@ -27,6 +27,7 @@ The following are the parameters present in `config.env.example` file present in
     EC2_Volume_size: Size in GB for root volume to be mounted to instance, Default: 64
     REGION: Region in which all resources are to be launched
     SG_CIDR: CIDR for allowing inbound connections to ICAP server (Ports: 22,1344,1355,443,7000)
+    OwnerName: Your Name which is used while creating tags for Ec2 Instnaces
 ```
 
 ## Create stack of ICAP Servers behind Loadbalancer
