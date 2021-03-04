@@ -114,6 +114,14 @@ in us-east-2 creating 2 servers mapped to elastic ip YOUR_ALLOCATION_ID
 
 - For the next page, leave everything at default, review and create stack
 
+### Resources that will be created :
+- The declared number of instances will be created and running
+- A load balancer will be created to manage the traffic of the instances
+- A Security Group will be created for the instances with its inbound rules
+- Network interfaces will be created and attached to the instances 
+- A Virtual Private Cloud (VPC) will be created to enable you to launch AWS resources
+- Subnets will be created
+- Auto Scaling groups and lunch configurations
 
 ### Github Workflow to upload latest template to S3
 - When a change is made to template.json file present in main branch, Github action will be triggered automatically to upload latest template to S3 bucket
