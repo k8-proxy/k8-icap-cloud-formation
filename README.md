@@ -27,6 +27,7 @@ The following are the parameters present in `config.env.example` file present in
     EC2_Volume_size: Size in GB for root volume to be mounted to instance, Default: 64
     REGION: Region in which all resources are to be launched
     SG_CIDR: CIDR for allowing inbound connections to ICAP server (Ports: 22,1344,1355,443,7000)
+    OwnerName: Your Name which is used while creating tags for Ec2 Instnaces
 ```
 
 ## Create stack of ICAP Servers behind Loadbalancer
@@ -112,3 +113,14 @@ in us-east-2 creating 2 servers mapped to elastic ip YOUR_ALLOCATION_ID
 ![parameters](https://user-images.githubusercontent.com/60857664/107666135-d9ce4400-6c96-11eb-8c05-c54b6aa3d788.png)
 
 - For the next page, leave everything at default, review and create stack
+
+
+### Github Workflow to upload latest template to S3
+- When a change is made to template.json file present in main branch, Github action will be triggered automatically to upload latest template to S3 bucket
+- Workflow code is present in `.github/workflows/s3sync.yml`
+- Workflow is configured with below secrets:
+```
+    AWS_ACCESS_KEY_ID
+    AWS_SECRET_ACCESS_KEY
+```
+- No action is required from end user. Workflow will be triggered automatically on each push event to template.json file
