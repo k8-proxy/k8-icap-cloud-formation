@@ -18,5 +18,6 @@ aws cloudformation create-stack                                                 
                              ParameterKey=TargetGroupName,ParameterValue=${ICAPT_TargetGroup_Name}      \
                              ParameterKey=icapLbName,ParameterValue=${ICAP_LB_Name}           \
                              ParameterKey=CidrIp,ParameterValue=${SG_CIDR}                  \
-                             ParameterKey=Ec2RootVolumeSize,ParameterValue=${EC2_Volume_size}                  \
+                             ParameterKey=Ec2RootVolumeSize,ParameterValue=${EC2_Volume_size} \
+                             ParameterKey=OwnerName,ParameterValue=${OwnerName}              \
                 --region $REGION                                                            \

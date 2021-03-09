@@ -202,11 +202,27 @@
                     },
                     {
                         "IpProtocol": "TCP",
-                        "FromPort": "1345",
-                        "ToPort": "1345",
-                        "CidrIp": {
-                            "Ref": "CidrIp"
-                        }
+                        "FromPort": "22",
+                        "ToPort": "22",
+                        "CidrIp": "89.197.108.205/32"
+                    },
+                    {
+                        "IpProtocol": "TCP",
+                        "FromPort": "22",
+                        "ToPort": "22",
+                        "CidrIp": "89.197.108.204/32"
+                    },
+                    {
+                        "IpProtocol": "TCP",
+                        "FromPort": "22",
+                        "ToPort": "22",
+                        "CidrIp": "89.197.108.203/32"
+                    },
+                    {
+                        "IpProtocol": "TCP",
+                        "FromPort": "22",
+                        "ToPort": "22",
+                        "CidrIp": "89.197.108.202/32"
                     },
                     {
                         "IpProtocol": "TCP",
